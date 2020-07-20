@@ -6,7 +6,7 @@ if exists("b:current_syntax")
     finish
 endif
 
-syntax keyword incarKeyword nextgroup=incarStatement
+syntax keyword incarKeyword nextgroup=incarValidStatement
             \ ADDGRID AEXX AGGAC AGGAX ALDAC ALGO AMIN AMIX AMIX_MAG ANDERSEN_PROB ANTIRES
             \ APACO BMIX BMIX_MAG CH_LSPEC CH_NEDOS CH_SIGMA CLL CLN CLNT CLZ CMBJ CMBJA CMBJB
             \ CSHIFT DEPER DIMER_DIST DIPOL DQ EBREAK EDIFF EDIFFG EFIELD EFIELD_PEAD EINT
@@ -53,20 +53,23 @@ syntax keyword incarKeyword nextgroup=incarStatement
 
 highlight link incarKeyword Keyword
 
+syntax match incarTrash nextgroup=incarInvalidStatement /[^!=# ]\+/
+highlight link incarTrash Error
+
 " the \v key means vim's very magic regex 
-syntax region incarComment contained start=/[!#]/ end=/$/
+syntax region incarComment start=/[!#]/ end=/$/
 highlight link incarComment Comment
 
 syntax keyword incarConstant contained Eigenval
 syntax keyword incarConstant contained ACCURATE Accurate HIGH High NORMAL Normal LOW Low
 syntax keyword incarConstant contained C
-syntax keyword incarConstant contained NONE
+syntax keyword incarConstant contained NONE None AUTO Auto
 syntax match incarConstant contained ".TRUE."
 syntax match incarConstant contained ".FALSE."
 syntax match incarConstant contained "\v(([0-9]*\.)?[0-9]+E?-?[0-9]*\s?)*"
 
 " Integers
-syntax match incarNumber contained /\<\d\+\(_\a\w*\)\=\>/
+syntax match incarNumber contained /\<[+-]\?\d\+\(_\a\w*\)\=\>/
 " floating point number, without a decimal point
 syntax match incarNumber contained /\<\d\+[deq][-+]\=\d\+\(_\a\w*\)\=\>/
 " floating point number, starting with a decimal point
@@ -81,10 +84,12 @@ syntax match incarNumber contained /\<\d\+\.\d\+\(e[-+]\=\d\+\)\=\(_\a\w*\)\=\>/
 highlight link incarNumber Number
 highlight link incarConstant Constant
 
-syntax match incarStatement contains=incarConstant,incarComment keepend /=.*$/
-highlight link incarStatement Statement
+syntax cluster incarStatement contains=incarConstant,incarNumber
 
-syntax match incarTrash /^ *[^#].*=.*$/
-highlight link incarTrash Error
+syntax match incarValidStatement contains=@incarStatement nextgroup=incarComment / *=[^#!]*/
+highlight link incarValieStatement Statement
+
+syntax match incarInvalidStatement contains=@incarStatement nextgroup=incarComment  / *=[^#!]*/
+highlight link incarInvalidStatement Error
 
 let b:current_syntax = "INCAR"
