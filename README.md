@@ -28,3 +28,17 @@ You should then have something like that:
 \-> syntax
     \-> INCAR.vim
 ```
+
+## How to use
+
+You should have syntax highlighting and plugin detection enabled.
+```vim
+filetype plugin on
+syntax on
+```
+
+Then open an INCAR like usual.
+If highlighting does not work properly try the command `:setf INCAR`.
+If it fixes it, it means the file type is not properly detected for some reason.
+
+If you want to use highlighting on a file not named `INCAR` the command `:setf INCAR` will enable it.
