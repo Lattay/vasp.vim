@@ -84,12 +84,15 @@ syntax match incarNumber contained /\<\d\+\.\d\+\(e[-+]\=\d\+\)\=\(_\a\w*\)\=\>/
 highlight link incarNumber Number
 highlight link incarConstant Constant
 
+syntax match incarColon /;/
+highlight link incarColon Normal
+
 syntax cluster incarStatement contains=incarConstant,incarNumber
 
-syntax match incarValidStatement contains=@incarStatement nextgroup=incarComment / *=[^#!]*/
+syntax match incarValidStatement contains=@incarStatement nextgroup=incarComment,incarColon / *=[^#!;]*/
 highlight link incarValieStatement Statement
 
-syntax match incarInvalidStatement contains=@incarStatement nextgroup=incarComment  / *=[^#!]*/
+syntax match incarInvalidStatement contains=@incarStatement nextgroup=incarComment,incarColon  / *=[^#!;]*/
 highlight link incarInvalidStatement Error
 
 let b:current_syntax = "INCAR"
