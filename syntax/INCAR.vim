@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language:	VASP's INCAR
 " Maintainer:	Théo Cavignac <theo.cavignac@gmail.com>
-" Last Change:	2020 Jul 20
+" Last Change:	2024 Oct 30
 if exists("b:current_syntax")
     finish
 endif
@@ -61,7 +61,15 @@ syntax region incarComment start=/[!#]/ end=/$/
 highlight link incarComment Comment
 
 syntax keyword incarConstant contained Eigenval
+
+" PREC
 syntax keyword incarConstant contained ACCURATE Accurate HIGH High NORMAL Normal LOW Low
+
+" functionals
+syntax keyword incarConstant contained
+            \ CA SL CA_C PZ_C VW HL WI LIBXC LI PE PBE_X PBE_C RE RP
+            \ PS AM B3 B5 OR BO MK ML CX CX BF
+
 syntax keyword incarConstant contained C
 syntax keyword incarConstant contained NONE None AUTO Auto
 syntax match incarConstant contained ".TRUE."
