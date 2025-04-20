@@ -5,7 +5,7 @@ Syntax highlighting for VASP's file.
 Now supporting INCAR only.
 
 Features:
-- Recognise all INCAR "tags" (as of 2025 Apr 16)
+- Recognise all INCAR "tags" (as of 2025 Apr 21)
 - highlight in red when a tag is not recognised
 - support most constant commonly used in INCARs
 - support bash/python style and Fortrand style comments

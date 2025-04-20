@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language:	VASP's INCAR
 " Maintainer:	Théo Cavignac <theo.cavignac@gmail.com>
-" Last Change:	2024 Oct 30
+" Last Change:	2025 Apr 21
 if exists("b:current_syntax")
     finish
 endif
