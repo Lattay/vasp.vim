@@ -37,7 +37,7 @@ from urllib.parse import urljoin
 class SimpleIncarTagSpider(scrapy.Spider):
     name = "simple_incar_tags"
     allowed_domains = ["www.vasp.at"]
-    start_urls = ["https://www.vasp.at/wiki/index.php/Category:INCAR_tag"]
+    start_urls = ["https://www.vasp.at/wiki/index.php?title=Category:INCAR_tag&pageuntil=AMIX"]
 
     custom_settings = {
         "USER_AGENT": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
