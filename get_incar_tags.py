@@ -86,6 +86,9 @@ def make_syntax_directive(tags):
     current_line = ["    \\"]
     current_line_len = 5
     for tag in tags:
+        if ":" in tag:
+            continue
+
         if current_line_len + 1 + len(tag) > 80:
             lines.append(" ".join(current_line))
 
