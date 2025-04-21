@@ -134,7 +134,7 @@ highlight link incarColon Normal
 syntax cluster incarStatement contains=incarConstant,incarNumber
 
 syntax match incarValidStatement contains=@incarStatement nextgroup=incarComment,incarColon / *=[^#!;]*/
-highlight link incarValieStatement Statement
+highlight link incarValidStatement Statement
 
 syntax match incarInvalidStatement contains=@incarStatement nextgroup=incarComment,incarColon  / *=[^#!;]*/
 highlight link incarInvalidStatement Error
